@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>
+        DEMO
+    </title>
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <!-- 生产环境中不建议使用 -->
+    <script src="../js/babel.min.js"></script>
+
+</head>
+<body>
+
+<div id="example"></div>
+<script type="text/babel">
+
+    class TodoList extends React.Component {
+        constructor(props) {
+            super(props);
+
+            this.state = {
+                todoList: [],
+                inputText: ''
+            }
+
+            this.handlerAdd = this.handlerAdd.bind(this)
+            this.handlerTextChange = this.handlerTextChange.bind(this)
+        }
+
+        handlerAdd(event) {
+            event.preventDefault();
+            if (this.state.inputText.length === 0) {
+                return
+            }
+
+            const item = {
+                title: this.state.inputText,
+                id: new Date()
+            }
+
+            this.setState(preState => (
+                {
+                    todoList: preState.todoList.concat(item),
+                    inputText: ''
+                }
+            ))
+        }
+
+        handlerTextChange(event) {
+            this.setState({
+                inputText: event.target.value
+            })
+        }
+
+        render() {
+            return (
+                <div>
+                    <h3>TODO LIST</h3>
+                    <TodoItem todoList={this.state.todoList}/>
+                    <br/>
+                    <label>what do you want to do?</label>
+                    <form onSubmit={this.handlerAdd}>
+                        <label>
+                            <input type="text" onChange={this.handlerTextChange} value={this.state.inputText}/>
+                        </label><br/>
+                        <button type="submit">添加 #{this.state.todoList.length}</button>
+
+                    </form>
+                </div>
+            )
+
+        }
+    }
+
+    class TodoItem extends React.Component {
+        render() {
+            return (
+                <ul>
+                    {
+                        this.props.todoList.map(todo => (
+                            <li key={todo.id}>{todo.title}</li>
+                        ))
+                    }
+                </ul>
+            )
+        }
+    }
+
+    ReactDOM.render(
+        <TodoList/>,
+        document.getElementById("example")
+    )
+
+</script>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script>
+
+        // 将函数赋值给变量
+        var sumVariate = function sum(a, b) {
+            return a + b;
+        };
+
+        function calculateSum(e) {
+            var a = document.getElementById("a").value;
+            var b = document.getElementById("b").value;
+
+            //直接使用变量名调用函数
+            // var result = sumVariate(Number(a), Number(b));
+
+            //箭头函数
+            var result = (a, b) => Number(a) + Number(b);
+            document.getElementById("sum_result").innerText = result(a, b);
+        }
+
+
+        // document.addEventListener("error",function (error) {
+        //     const elem = error.target;
+        //     console.log("document error : " + elem)
+        // })
+
+
+        // window.onload=function () {
+        //     var imgEle = document.getElementById("errorImg");
+        //     imgEle.addEventListener("error", function (e) {
+        //         console.log(e.message)
+        //         document.getElementById("errorImg").src = "../logo512.png";
+        //     });
+        // }
+        // var imgEle = document.getElementById("errorImg");
+        // imgEle.addEventListener("load", function () {
+        //
+        //     imgEle.addEventListener("error", function (e) {
+        //         console.log(e.message)
+        //         document.getElementById("errorImg").src = "../logo512.png";
+        //     });
+        // })
+
+        // document.addEventListener("load", function () {
+        //
+        //
+        //     var imgElements = document.getElementsByTagName("img");
+        //
+        //     console.log(imgElements.length)
+
+        // // for (var i = 0; i < imgElements.length; i++) {
+        // //     var errorImg = imgElements[i];
+        // //     errorImg.addEventListener("error", function (i) {
+        // //         console.log(i + " ====  ");
+        // //         ele.src = "../img/new_01.png";
+        // //     });
+        // // }
+        //
+        // var errorImg1 = imgElements[0];
+        // errorImg1.addEventListener("error", function (e) {
+        //     console.log(e + " ====  ");
+        //     // ele.src = "../img/new_01.png";
+        // });
+        //
+        // var errorImg2 = imgElements[1];
+        // errorImg2.addEventListener("error", function (e) {
+        //     console.log(e+ " ====  ");
+        //     // ele.src = "../img/new_01.png";
+        // });
+        //
+        // var errorImg3 = imgElements[2];
+        // errorImg3.addEventListener("error", function (e) {
+        //     console.log(e + " ====  ");
+        //     // ele.src = "../img/new_01.png";
+        // });
+
+        // }, true)
+
+        window.onload = function () {
+            console.log("=======================")
+
+            var errorImg = document.getElementById("errorImg_00");
+            errorImg.addEventListener("error", function () {
+
+                console.log("===========11111111111111============")
+                errorImg.src = "../img/new_01.png";
+            }, true)
+        }
+
+        // document.addEventListener("error", function (e) {
+        //     const elem = e.target;
+        //     if (elem.tagName.toLowerCase() === 'img') {
+        //         elem.src = "../img/new_01.png";
+        //     }
+        // }, true);
+
+
+        function ReloadImg() {
+            var imgElements = document.getElementsByTagName("img");
+            for (var i = 0; i < imgElements.length; i++) {
+                var errorImg = imgElements[i];
+                errorImg.addEventListener("error", function () {
+                    console.log(" ==== addEventListener ");
+                    // ele.src = "../img/new_01.png";
+                });
+            }
+        }
+    </script>
+
+</head>
+<body>
+
+<input type="number" id="a"> + <input type="number" id="b">
+<button type="button" onclick="calculateSum(this);" style="border: 0;">=</button>
+<span id="sum_result"></span>
+
+<br/>
+<br/>
+
+<img id="errorImg_00" src="http://www.ckvs" width="300px" height="300px"/><br/>
+<img id="errorImg_02" src="http://www.c22222kvs" width="300px" height="300px"/><br/>
+<img id="errorImg_01" src="http://www.ck333333vs" width="300px" height="300px"/><br/>
+
+<button type="button" onclick="ReloadImg()">ReloadImg</button>
+
+<script>
+
+</script>
+
+</body>
+</html>

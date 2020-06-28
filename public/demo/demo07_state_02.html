@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        DEMO
+    </title>
+
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <!-- 生产环境中不建议使用 -->
+    <script src="../js/babel.min.js"></script>
+
+</head>
+
+<body>
+<div id="stateDiv"></div>
+
+<script type="text/babel">
+    class Click extends React.Component {
+
+        constructor(props) {
+            super(props)
+
+            this.state = {count: 10}
+        };
+
+        render() {
+            return <div><h2> {this.state.count}</h2></div>
+        }
+
+        addCount() {
+            this.setState(prevState => ({
+               count: prevState.count + 1
+            }))
+
+        }
+
+    }
+
+    //在提供的 container 里渲染一个 React 元素，并返回对该组件的引用（或者针对无状态组件返回 null）。
+    const myClickBtn = ReactDOM.render(
+        <Click id={'myclick'}/>,
+        document.getElementById("stateDiv")
+    )
+
+    function clickBtn() {
+        alert(myClickBtn.state.count)
+        myClickBtn.addCount()
+    }
+
+</script>
+
+<button id="count" onclick="clickBtn();">click me</button>
+
+</body>
+
+</html>

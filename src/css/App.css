@@ -1,0 +1,75 @@
+
+.mainDiv {
+    width: 100%;
+    height: max-content;
+    background-color: #282c34;
+
+    /*垂直居中*/
+    align-content: center;
+    display: flex;
+    /*水平居中*/
+    justify-content: center;
+}
+
+.App {
+    width: 33.33333%;
+    height: 100%;
+    display: inline-block;
+    float: left;
+    padding-left: 50px;
+}
+
+.App-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+
+.App-link {
+    color: #61dafb;
+    text-decoration: none;
+    font-size: 24px;
+}
+
+.direction::before{
+    content: "  ";
+}
+
+a {
+    text-transform: uppercase;
+}
+
+a:link {
+    color: #61dafb;
+}
+
+a:visited {
+    color: #61dafb;
+}
+
+a:hover {
+    color: blue;
+    text-decoration: underline;
+}
+
+a:active {
+    color: red;
+}
+
+body{
+    counter-reset: section;
+}
+
+.App-link::before{
+    counter-increment: section;
+    content: counter(section) ". ";
+}
+
+
+@media screen {
+
+}

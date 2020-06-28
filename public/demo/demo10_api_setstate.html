@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>
+        DEMO SET STATE
+    </title>
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <!-- 生产环境中不建议使用 -->
+    <script src="../js/babel.min.js"></script>
+</head>
+<body>
+
+<pre>
+
+    onHandlerClick() {
+        //接收到更新的state
+        const s = function (prevState) {
+            return {clickCount: prevState.clickCount + 2}
+        }
+        /**
+         * 第一个参数：state
+         * 第二个参数：回调函数
+         */
+        this.setState(s, this.callback)
+    }
+
+</pre>
+
+<div id="demo10"></div>
+
+<script type="text/babel">
+    class MySetState extends React.Component {
+
+        constructor(props) {
+            super(props);
+
+            this.state = {
+                clickCount: 0
+            }
+
+            this.onHandlerClick = this.onHandlerClick.bind(this)
+            this.resetClickCount = this.resetClickCount.bind(this)
+        }
+
+        onHandlerClick() {
+            //接收到更新的state
+            const s = function (prevState) {
+                return {clickCount: prevState.clickCount + 2}
+            }
+            /**
+             * 第一个参数：state
+             * 第二个参数：回调函数
+             */
+            this.setState(s, this.callback)
+        }
+
+        resetClickCount() {
+            // this.replaceState({
+            //
+            //     count:this.state.count+1
+            //
+            // })
+
+            this.replaceState(
+                this.state = {
+                    clickCount: 0
+                },this.callback)
+        }
+
+        callback() {
+            alert("ok")
+        }
+
+        render() {
+            return (
+                <div>
+                    <button onClick={this.onHandlerClick}>点我，点击次数为：{this.state.clickCount}</button>
+                    <br/><br/>
+                    <button onClick={this.resetClickCount}>重置</button>
+                </div>
+            )
+        }
+    }
+
+    ReactDOM.render(
+        <MySetState/>,
+        document.getElementById('demo10')
+    )
+</script>
+
+</body>
+</html>

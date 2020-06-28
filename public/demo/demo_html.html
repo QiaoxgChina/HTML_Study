@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        #main {
+            border: 1px solid red;
+            width: 400px;
+            height: 400px;
+            align-content: center;
+            display: flex;
+            flex-flow: column wrap;
+            justify-content: center;
+        }
+
+        #main div {
+            width: 80px;
+            height: 80px;
+        }
+
+        ul .liElement {
+            display: inline;
+        }
+
+        .changeSize {
+            width: 200px;
+            height: 40px;
+            padding: 20px;
+            margin: 100px;
+            background-color: red;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<div id="main">
+    <div style="background-color:fuchsia;"></div>
+    <div style="background-color:red;"></div>
+    <div style="background-color:blue;"></div>
+    <div style="background-color:green;"></div>
+    <div style="background-color:gray;"></div>
+</div>
+
+<br/>
+
+<div>
+    element "li" display style is inline(内联元素)
+    <ul>
+        <li class="liElement">123123</li>
+        <li class="liElement">3435345</li>
+        <li class="liElement">65756756</li>
+        <li class="liElement">4534456</li>
+        <li class="liElement">90898978</li>
+        <li class="liElement">7642</li>
+    </ul>
+
+</div>
+
+<br/>
+
+<span class="changeSize">我是一个span元素,你不能改变我的width、height等块元素才能设置的属性</span>
+
+</body>
+</html>

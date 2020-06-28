@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <!-- 生产环境中不建议使用 -->
+    <script src="../js/babel.min.js"></script>
+
+
+    <style>
+        body {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        /*对class属性为App-link的元素设置样式*/
+        .App-link {
+            color: red
+        }
+
+        /*对id属性为hello的元素设置样式*/
+        #hello {
+            border-radius: 15px 0px 10px 0px;
+            border: 2px solid red;
+            width: 600px;
+            height: 120px;
+            text-align: center;
+            align-content: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="hello"></div>
+
+    <script type="text/babel">
+
+        var element = <h1 class="App-link"> this "hello world" from React</h1>;
+
+        ReactDOM.render(
+            element,
+            document.getElementById('hello')
+        );
+
+
+    </script>
+</body>
+
+</html>

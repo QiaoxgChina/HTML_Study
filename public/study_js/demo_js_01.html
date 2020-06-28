@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <!-- 不比在script标签中添加type=“text/javascript”了，因为javascript现在是现代浏览器默认的脚本语言-->
+    <script>
+
+        function changeColor(e) {
+            const textEle = document.getElementById('changeColor');
+            textEle.style.color = "red";
+        }
+
+        function baidu(e) {
+            window.location.href = 'https://www.baidu.com';
+        }
+
+        function verifyInputNumber() {
+            var inputElement = document.getElementById("inputNumber");
+            var messageElement = document.getElementById("message");
+            var inputValue = inputElement.value;
+
+            var message, color;
+            try {
+                if (inputValue === "") {
+                    throw "没有输入内容";
+                } else if (isNaN(inputValue)) {
+                    throw "输入的不是数字";
+                }
+                inputValue = Number(inputValue);
+                if (inputValue <= 5) {
+                    throw "小于或等于5";
+                } else if (inputValue >= 100) {
+                    throw "大于或等于100";
+                }
+
+                message = "您输入的数字是：" + inputValue;
+                color = "black";
+
+            } catch (e) {
+                message = "Error: " + e
+                color = "red";
+            } finally {
+                messageElement.style.color = color;
+                messageElement.innerHTML = message;
+                // inputElement.value = "";
+            }
+
+        }
+
+        function resetHint(e) {
+            verifyInputNumber();
+        }
+    </script>
+
+</head>
+<body>
+
+<button type="button" onclick="alert('welcome to js world !! ');">Click Me</button>
+<br/>
+<br/>
+<div id="time"></div>
+<button type="button" onclick="document.getElementById('time').innerHTML=Date();">show time</button>
+
+<br/>
+<br/>
+
+<div id="changeColor">使用js改变字体颜色</div>
+<button type="button" onclick="changeColor(this);">改变颜色</button>
+
+<br/>
+<br/>
+
+<button type="button" onclick="baidu(this)">Baidu</button>
+
+<br/>
+<br/>
+
+<!--oninput当用户输入的内容改变时触发的事件，可以用来即时检验用户输入的内容是否合法-->
+<label for="inputNumber"><input type="text" alt="请输入5到100之间的数字" id="inputNumber" onchange=""
+                                placeholder="请输入5到100之间的数字" oninput="resetHint(this);" autocomplete="on"/></label>
+<button type="button" onclick="verifyInputNumber();">验证</button>
+<span id="message"></span>
+
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<style>
+    body {
+        text-align: center;
+    }
+
+    body .item {
+        width: 60%;
+        text-align: left;
+        border: 1px orange dashed;
+        padding: 10px 20px;
+        margin: 10px auto;
+    }
+
+    .center_1 {
+        border: 3px green solid;
+        height: 100px;
+        width: 500px;
+        margin: auto;
+    }
+
+    .center_2 {
+        border: 3px green solid;
+        height: 100px;
+    }
+
+    .center_2 p {
+        text-align: center;
+    }
+
+    .center_3 {
+        border: 3px green solid;
+        height: 200px;
+    }
+
+    .center_3 img {
+        margin: auto;
+        display: block;
+    }
+
+    .center_4 {
+        border: 3px green solid;
+        height: 50px;
+    }
+
+    .center_4 img {
+        float: right;
+    }
+
+    .center_4_1 {
+        border: 3px green solid;
+        overflow: auto;
+    }
+
+    .center_5 {
+        border: 3px green solid;
+        padding: 50px 0;
+        text-align: center;
+    }
+</style>
+
+<body>
+
+<div class="item">
+    <h3>垂直居中对齐 - 使用 padding 方式</h3>
+    <p>如果需要水平对齐，则添加属性：text-align: center;</p>
+    <div class="center_5">
+        <p>垂直居中对齐 - 使用 padding 方式</p>
+        <p>垂直居中对齐 - 使用 padding 方式</p>
+    </div>
+</div>
+
+<div class="item">
+    <h3>左右对齐 - 使用 float 方式</h3>
+    <p>注意：如果子元素的高度大于父元素，且子元素设置了浮动，那么子元素将溢出，这时候你可以使用 "clearfix(清除浮动)" 来解决该问题。
+    </p>
+
+    <div class="center_4">
+        <img src="../img/new_01.png" width="150px" height="100px" alt=""/>
+    </div>
+
+    <p style="margin-top: 100px;">我们可以在父元素上添加 overflow: auto; 来解决子元素溢出的问题:</p>
+    <div class="center_4_1">
+        <img src="../img/new_01.png" width="150px" height="100px" alt="" style="float: right"/>
+    </div>
+</div>
+
+<div class="item">
+    <h3>元素居中对齐</h3>
+    <p>水平居中块级元素 (如 div), 可以使用 margin: auto;</p>
+
+    <div class="center_1">
+        <p><b>注意: </b>使用 margin:auto 无法兼容 IE8, 除非 !DOCTYPE 已经声明。另外，如果不设置width或者width为100%，居中将无法实现</p>
+    </div>
+</div>
+<div class="item">
+    <h3>文本居中对齐</h3>
+    <p>文本水平居中, 可以使用 text-align: center;</p>
+
+    <div class="center_2">
+        <p><b>注意: </b>使用 margin:auto 无法兼容 IE8, 除非 !DOCTYPE 已经声明。另外，如果不设置width或者width为100%，居中将无法实现</p>
+    </div>
+</div>
+
+<div class="item">
+    <h3>图片居中对齐</h3>
+    <p>要让图片居中对齐, 可以使用 margin: auto; 并将它放到 块 元素中:</p>
+
+    <div class="center_3">
+        <img src="../img/new_01.png" width="150px" height="100px" alt=""/>
+    </div>
+</div>
+</body>
+</html>

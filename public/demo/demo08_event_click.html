@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        DEMO
+    </title>
+
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <!-- 生产环境中不建议使用 -->
+    <script src="../js/babel.min.js"></script>
+
+</head>
+
+<body>
+
+<div id="clickEvent"></div>
+
+<script type="text/babel">
+    class MyClick extends React.Component {
+
+        constructor() {
+            super()
+
+            this.state = {
+                name: "Qiaoxg"
+            }
+        }
+
+        render() {
+            return (
+                <div>
+                    <button onClick={(e) => this.clickBtn(this.state.name, e)}>I am {this.state.name}</button>
+                </div>
+            )
+        }
+
+        //带参数的函数
+        clickBtn(name, e) {
+            e.preventDefault
+            alert('Hello !' + name)
+            this.setState(
+                prevState => ({
+                        name: "Hero !"
+                    }
+                )
+            )
+        }
+
+    }
+
+    ReactDOM.render(
+        <MyClick/>,
+        document.getElementById('clickEvent')
+    )
+</script>
+</body>
+
+</html>

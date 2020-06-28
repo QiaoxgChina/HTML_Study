@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        DEMO
+    </title>
+
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <!-- 生产环境中不建议使用 -->
+    <script src="../js/babel.min.js"></script>
+
+    <style type="text/css">
+        body {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .item {
+            border-top: 1px solid gainsboro;
+            border-bottom: 1px solid gainsboro;
+            padding: 10px 15px 10px 15px;
+            border-radius: 0px;
+            width: 100%;
+            height: 120px;
+            margin-bottom: 10px;
+        }
+
+        .title {
+            color: black;
+        }
+
+        .content {
+            color: gray;
+        }
+
+        .word {
+            float: right;
+            width: 80%;
+            height: 100%;
+        }
+
+        #icon {
+            float: left;
+            width: 80px;
+            height: 120px;
+            position: relative;
+        }
+
+        #icon img {
+            width: 70px;
+            height: 70px;
+            margin-top: -35px;
+            top: 50%;
+            position: absolute;
+        }
+
+        /* #test {
+            border: 1px solid red;
+            width: 200px;
+            height: 120px;
+            display: table-cell;
+            vertical-align: middle;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        #test img {
+            border: 1px solid red;
+            width: 70px;
+            height: 70px;
+        } */
+    </style>
+
+</head>
+
+<body>
+
+    <div id="components"></div>
+
+    <!-- <div id="test">
+        <img src="logo192.png" width="70px" height="70px" />
+    </div> -->
+
+    <script type="text/babel">
+
+        function Icon(param) {
+            return <div id="icon"><img src={param.path} width="70px" height="70px"></img></div>
+        }
+
+        function Title(param) {
+            return <span className="title">{param.name}</span>
+        }
+
+        class Content extends React.Component {
+            render() {
+                return <div className="content">{this.props.content}</div>
+            }
+        }
+
+        class Item extends React.Component {
+            render() {
+                return <div className="item"><Icon path={this.props.path} /><div className="word"><Title name={this.props.title} /><Content content={this.props.content} /></div></div>
+            }
+        }
+
+
+        var projectItems = [
+            <Item path="../logo192.png" title="HUAWEI MATEBOOK PRO" content="华为新一代性不能旗舰笔记本" key="12"/>,
+            <Item path="../logo192.png" title="HUAWEI MATEBOOK PRO" content="华为新一代性不能旗舰笔记本" key="132" />,
+            <Item path="../logo192.png" title="HUAWEI MATEBOOK PRO" content="华为新一代性不能旗舰笔记本" key="43"/>
+        ];
+
+        ReactDOM.render(
+            <div>{projectItems}</div>,
+            document.getElementById('components')
+        );
+
+    </script>
+
+</body>
+
+</html>

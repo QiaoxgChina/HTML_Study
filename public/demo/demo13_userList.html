@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>
+        DEMO
+    </title>
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <!-- 生产环境中不建议使用 -->
+    <script src="../js/babel.min.js"></script>
+
+    <script src="../js/jquery_2.1.4.js"></script>
+
+    <style>
+        .tr_userItem {
+            height: 80px;
+            width: 100%;
+
+            justify-content: center;
+        }
+
+        .userAvatar {
+            width: 60px;
+            height: 60px;
+        }
+
+        .td_img {
+            height: 80px;
+            width: 80px;
+
+            text-align: center;
+        }
+
+        .td_btn {
+            width: 100px;
+            text-align: center;
+        }
+
+        .td_text {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        .userName {
+            font-size: 20px;
+            color: black;
+        }
+
+        .gitHub {
+            font-size: 14px;
+            color: gray;
+        }
+
+        .loadingState {
+            text-align: center;
+            cursor: wait;
+        }
+
+        img {
+            width: 60px;
+            height: 60px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        tr td {
+            border: 1px solid lightgray;
+            vertical-align: center;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        tr th {
+            border: 1px solid lightgray;
+            padding: 10px;
+            background-color: #333333;
+            color: white;
+            position: sticky;
+            top: 0;
+        }
+
+        /*.firstLetter{*/
+        /*    float: left;*/
+        /*    font-size: 30px;*/
+        /*    color: #333333;*/
+        /*    line-height: 90%;*/
+        /*}*/
+
+    </style>
+
+
+    <script>
+        document.addEventListener("error", function (e) {
+            const elem = e.target;
+            if (elem.tagName.toLowerCase() === 'img') {
+                elem.src = "../logo192.png";
+            }
+        }, true);
+    </script>
+</head>
+<body>
+
+<div id="example"></div>
+
+<script type="text/babel">
+
+    class UserListRequest extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = {
+                state: 1,//1:加载中  2：加载成功   3：加载错误
+                requestResult: []
+            }
+
+            this.handlerClick = this.handlerClick.bind(this)
+        }
+
+        componentDidMount() {
+            this.setState({
+                state: 1,
+                requestResult: []
+            })
+
+            //注意：无论是请求成功的回调函数还是请求失败的回调函数，都要bind（this），否则无法使用this.setState
+            // this.request = $.get(this.props.source, function (result) {
+            //     this.setState({
+            //         state: 2,
+            //         requestResult: result
+            //     })
+            // }.bind(this)).error(function (xhr, errorText, errorType) {
+            //     this.setState({
+            //         state: 3,
+            //         requestResult: []
+            //     })
+            // }.bind(this));
+
+            $.ajax({
+                url: this.props.source,
+                date: {},
+                type: 'GET',
+                success: function (result) {
+                    this.setState({
+                        state: 2,
+                        requestResult: result
+                    })
+                }.bind(this),
+                error: function (error) {
+                    this.setState({
+                        state: 2,
+                        requestResult: userList
+                    })
+                }.bind(this)
+            })
+
+        }
+
+        componentWillUnmount() {
+            this.request.abort();
+        }
+
+        handlerClick(event) {
+
+            const confirmDelete = confirm("确定要删除 : " + event.target.id + " 吗？")
+            if (!confirmDelete) return
+            const list = this.state.requestResult
+            list.map((user, index) => {
+                if (user.login === event.target.id) {
+                    //起始位置index，删除1个元素
+                    list.splice(index, 1)
+
+                    this.setState({
+                        requestResult: list
+                    })
+                }
+            })
+        }
+
+        render() {
+            if (this.state.state === 1) {
+                return <LoadStateView state={1}/>
+            } else if (this.state.state === 2) {
+                return <UserDataView userList={this.state.requestResult} clickHandler={this.handlerClick}/>;
+            } else if (this.state.state === 3) {
+                return <LoadStateView state={3}/>
+            }
+
+        }
+    }
+
+    function UserDataView(props) {
+        return (
+            <table>
+                <tr>
+                    <th>
+                        头像
+                    </th>
+                    <th>
+                        描述
+                    </th>
+
+                    <th>
+                        操作
+                    </th>
+
+                </tr>
+                {props.userList.map(
+                    (user, index) => (
+                        <UserItem userName={user.login} avatar={user.avatar_url} gitUrl={user.html_url}
+                                  key={user.node_id} handlerClick={props.clickHandler} index={index}/>
+                    )
+                )}
+            </table>
+        )
+    }
+
+    function UserItem(props) {
+
+        let bgColor = "";
+        if (props.index % 2 === 1) {
+            bgColor = "#fff"
+        } else {
+            bgColor = "#f8f8f8"
+        }
+
+
+        return (
+            <tr className="tr_userItem" bgcolor={bgColor}>
+                <td className="td_img"><img className="userAvatar" src={props.avatar} alt="img"/></td>
+                <td className="td_text">
+                    <span className="userName">{props.userName}</span><br/><span
+                        className="gitHub"><span className="firstLetter">G</span>itHub : {props.gitUrl}</span>
+                </td>
+                <td className="td_btn">
+                    <button onClick={props.handlerClick} id={props.userName}>删除</button>
+                </td>
+            </tr>
+        )
+    }
+
+    class LoadStateView extends React.Component {
+        render() {
+            const state = this.props.state
+            let stateString = ''
+            if (state === 1) {
+                stateString = '加载中。。。'
+            } else if (state === 2) {
+                return null
+            } else if (state === 3) {
+                stateString = '加载失败'
+            }
+
+            return <div className="loadingState">
+                <h1>{stateString}</h1>
+            </div>;
+        }
+    }
+
+    ReactDOM.render(
+        <UserListRequest source="https://api.github.com/users"/>,
+        document.getElementById('example')
+    )
+
+
+    const userList = [
+        {
+            "login": "mojombo",
+            "id": 1,
+            "node_id": "MDQ6VXNlcjE=",
+            "avatar_url": "https://avatars0.githubusercontent.com/u/1?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/mojombo",
+            "html_url": "https://github.com/mojombo",
+            "followers_url": "https://api.github.com/users/mojombo/followers",
+            "following_url": "https://api.github.com/users/mojombo/following{/other_user}",
+            "gists_url": "https://api.github.com/users/mojombo/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/mojombo/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/mojombo/subscriptions",
+            "organizations_url": "https://api.github.com/users/mojombo/orgs",
+            "repos_url": "https://api.github.com/users/mojombo/repos",
+            "events_url": "https://api.github.com/users/mojombo/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/mojombo/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        {
+            "login": "topfunky",
+            "id": 26,
+            "node_id": "MDQ6VXNlcjI2",
+            "avatar_url": "https://avatars3.githubusercontent.com/u/26?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/topfunky",
+            "html_url": "https://github.com/topfunky",
+            "followers_url": "https://api.github.com/users/topfunky/followers",
+            "following_url": "https://api.github.com/users/topfunky/following{/other_user}",
+            "gists_url": "https://api.github.com/users/topfunky/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/topfunky/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/topfunky/subscriptions",
+            "organizations_url": "https://api.github.com/users/topfunky/orgs",
+            "repos_url": "https://api.github.com/users/topfunky/repos",
+            "events_url": "https://api.github.com/users/topfunky/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/topfunky/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        {
+            "login": "anotherjesse",
+            "id": 27,
+            "node_id": "MDQ6VXNlcjI3",
+            "avatar_url": "https://avatars3.githubusercontent.com/u/27?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/anotherjesse",
+            "html_url": "https://github.com/anotherjesse",
+            "followers_url": "https://api.github.com/users/anotherjesse/followers",
+            "following_url": "https://api.github.com/users/anotherjesse/following{/other_user}",
+            "gists_url": "https://api.github.com/users/anotherjesse/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/anotherjesse/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/anotherjesse/subscriptions",
+            "organizations_url": "https://api.github.com/users/anotherjesse/orgs",
+            "repos_url": "https://api.github.com/users/anotherjesse/repos",
+            "events_url": "https://api.github.com/users/anotherjesse/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/anotherjesse/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        {
+            "login": "roland",
+            "id": 28,
+            "node_id": "MDQ6VXNlcjI4",
+            "avatar_url": "https://avatars2.githubusercontent.com/u/28?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/roland",
+            "html_url": "https://github.com/roland",
+            "followers_url": "https://api.github.com/users/roland/followers",
+            "following_url": "https://api.github.com/users/roland/following{/other_user}",
+            "gists_url": "https://api.github.com/users/roland/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/roland/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/roland/subscriptions",
+            "organizations_url": "https://api.github.com/users/roland/orgs",
+            "repos_url": "https://api.github.com/users/roland/repos",
+            "events_url": "https://api.github.com/users/roland/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/roland/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        {
+            "login": "lukas",
+            "id": 29,
+            "node_id": "MDQ6VXNlcjI5",
+            "avatar_url": "https://avatars2.githubusercontent.com/u/29?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/lukas",
+            "html_url": "https://github.com/lukas",
+            "followers_url": "https://api.github.com/users/lukas/followers",
+            "following_url": "https://api.github.com/users/lukas/following{/other_user}",
+            "gists_url": "https://api.github.com/users/lukas/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/lukas/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/lukas/subscriptions",
+            "organizations_url": "https://api.github.com/users/lukas/orgs",
+            "repos_url": "https://api.github.com/users/lukas/repos",
+            "events_url": "https://api.github.com/users/lukas/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/lukas/received_events",
+            "type": "User",
+            "site_admin": false
+        },
+        {
+            "login": "fanvsfan",
+            "id": 30,
+            "node_id": "MDQ6VXNlcjMw",
+            "avatar_url": "https://avatars2.githubusercontent.com/u/30?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/fanvsfan",
+            "html_url": "https://github.com/fanvsfan",
+            "followers_url": "https://api.github.com/users/fanvsfan/followers",
+            "following_url": "https://api.github.com/users/fanvsfan/following{/other_user}",
+            "gists_url": "https://api.github.com/users/fanvsfan/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/fanvsfan/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/fanvsfan/subscriptions",
+            "organizations_url": "https://api.github.com/users/fanvsfan/orgs",
+            "repos_url": "https://api.github.com/users/fanvsfan/repos",
+            "events_url": "https://api.github.com/users/fanvsfan/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/fanvsfan/received_events",
+            "type": "User",
+            "site_admin": false
+        }
+    ]
+</script>
+</body>
+</html>

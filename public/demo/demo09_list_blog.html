@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        DEMO
+    </title>
+
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <!-- 生产环境中不建议使用 -->
+    <script src="../js/babel.min.js"></script>
+
+    <style>
+        .content {
+            font-size: 20px;
+        }
+
+        .time {
+            font-size: 14px;
+            color: gray;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div id="blog"></div>
+<script type="text/babel">
+
+    //title、content、time
+    class MyBlog extends React.Component {
+
+        render() {
+            return (
+                <div>
+                    {
+                        this.props.blogList.map(
+                            (blog) =>
+                                <div key={blog.id}>
+                                    <h2>{blog.title}</h2>
+                                    <span className="content">{blog.content}</span><br/>
+                                    <span className="time">{blog.time}</span><br/>
+                                </div>
+                        )
+                    }
+
+                </div>
+            )
+        }
+    }
+
+    var blogList = [
+        {id: 12, title: 'Hello world', content: 'this is the first html page', time: '2020-06-12 12:32:23'},
+        {id: 13, title: 'JS Component', content: 'this is the study about React JS', time: '2020-06-12 12:32:23'}
+    ]
+    ReactDOM.render(
+        <MyBlog blogList={blogList}/>,
+        document.getElementById('blog')
+    )
+
+</script>
+</body>
+
+</html>

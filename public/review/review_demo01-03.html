@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Review Demo(01-03)</title>
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <!-- 生产环境中不建议使用 -->
+    <script src="../js/babel.min.js"></script>
+
+    <style>
+        .title {
+            font-size: large;
+            color: red;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="review_01"></div>
+
+    <script type="text/babel">
+        var items = [
+            <span class="title">hello world</span>,
+            <span class="title">array</span>,
+            <span class="title">component</span>
+        ];
+
+        ReactDOM.render(
+            items.map(
+                function (item) {
+                    return <p>title is {item}</p>
+                }
+            ),
+            document.getElementById('review_01')
+        );
+
+    </script>
+
+    <br />
+
+    <div id="review_02"></div>
+    <script type="text/babel">
+
+        function ReviewClass(params) {
+            return <h2>{params.content}</h2>
+        }
+
+        var componentStyles = [
+            "函数方式",
+            "继承React.Component"
+        ];
+
+        ReactDOM.render(
+
+            componentStyles.map(
+                function (styles) {
+                    return <ReviewClass content={styles} />
+                }
+            ),
+            document.getElementById('review_02')
+        );
+
+    </script>
+
+    <br />
+    <div id="review_03"></div>
+    <script type="text/babel">
+
+        class ReviewComponent extends React.Component {
+            render() {
+                return <h2>{this.props.content}</h2>
+            }
+        }
+
+        var componentStyles = [
+            "函数方式",
+            "继承React.Component"
+        ];
+
+        ReactDOM.render(
+
+            componentStyles.map(
+                function (styles) {
+                    return <ReviewComponent content={styles} />
+                }
+            ),
+            document.getElementById('review_03')
+        );
+
+
+    </script>
+
+
+    <br />
+    <div id="review_05"></div>
+    <script type="text/babel">
+
+        var element = [<h2>注意的地方：</h2>,
+        <h4>js中添加html元素，只能有一个根元素</h4>,
+        <h4>使用引号要谨慎,js表达式一定要用{}包裹住</h4>,
+        <h4>组件创建必须在调用它之前</h4>,
+        <h4>函數最後得有return，包括使用函數方式創建組件的時候</h4>
+        ];
+        ReactDOM.render(
+            <div>{element}</div>,
+            document.getElementById('review_05')
+        );
+
+    </script>
+
+    <br />
+    <div id="review_04"></div>
+    <script type="text/babel">
+
+        var element = <div> <h2>注意的地方：</h2><ul>
+            <li>js中添加html元素，只能有一个根元素</li>
+            <li>使用引号要谨慎</li>
+            <li>组件创建必须在调用它之前</li>
+            <li>函數最後得有return，包括使用函數方式創建組件的時候</li>
+        </ul></div>;
+        ReactDOM.render(
+            element,
+            document.getElementById('review_04')
+        );
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        DEMO
+    </title>
+
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <!-- 生产环境中不建议使用 -->
+    <script src="../js/babel.min.js"></script>
+
+</head>
+
+<body>
+
+<div id="default"></div>
+
+<script type="text/babel">
+
+    class MyDefault extends React.Component {
+        constructor() {
+            super();
+            this.state = {
+                name: "state name",
+                site: "www.baidu.com"
+            }
+        }
+
+        render() {
+            return (
+                <div>
+                    <MySite site={this.state.site}/> <br/>
+                    <MyName name={this.state.name}/>
+                </div>
+            );
+
+        }
+    }
+
+    class MySite extends React.Component {
+        render() {
+            return <h2>site is : {this.props.site}</h2>
+        }
+    }
+
+    class MyName extends React.Component {
+        render() {
+            return <h2>name is : {this.props.name}</h2>
+        }
+    }
+
+    ReactDOM.render(
+        <MyDefault />,
+        document.getElementById('default')
+    );
+</script>
+
+</body>
+
+</html>

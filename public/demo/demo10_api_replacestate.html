@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>
+        DEMO SET STATE
+    </title>
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <!-- 生产环境中不建议使用 -->
+    <script src="../js/babel.min.js"></script>
+</head>
+<body>
+
+
+<div id="demo10"></div>
+
+<script type="text/babel">
+    class MySetState extends React.Component {
+
+        constructor(props) {
+            super(props);
+
+            this.state = {
+                clickCount: 5
+            }
+
+            this.resetClickCount = this.resetClickCount.bind(this)
+        }
+
+        resetClickCount() {
+            // this.replaceState({
+            //
+            //     count:this.state.count+1
+            //
+            // })
+
+            const newState = {clickCount: 0}
+            this.setState(newState)
+
+            const propsd = {name: "Qiaoxg"}
+            this.setProps(propsd)
+        }
+
+        callback() {
+            alert("ok")
+        }
+
+        render() {
+            return (
+                <div>
+                    <h2>点击次数：{this.state.clickCount} , {this.props.name}</h2>
+                    <button onClick={this.resetClickCount}>重置</button>
+                </div>
+            )
+        }
+    }
+
+    ReactDOM.render(
+        <MySetState/>,
+        document.getElementById('demo10')
+    )
+</script>
+
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        DEMO
+    </title>
+
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <!-- 生产环境中不建议使用 -->
+    <script src="../js/babel.min.js"></script>
+
+</head>
+
+<body>
+
+<p>
+    第一个list：
+</p>
+<div id="div1"></div>
+<script type="text/babel">
+
+    var names = ['北京', '天津', '河北', '江苏', '新疆']
+
+    var element = names.map(
+        name => <li>{name}</li>
+    )
+
+    ReactDOM.render(
+        <ol>
+            {element}
+        </ol>,
+        document.getElementById('div1')
+    )
+
+</script>
+
+
+<p>
+    列表组件 , toString is key ：
+</p>
+<div id="div2"></div>
+<script type="text/babel">
+    function MyListCom(props) {
+        const items = props.items
+        // const lis = items.map(item => <li key={item.toString()}>{item}</li>)
+        return <ul>{items.map(item => <li key={item.toString()}> key : {item.toString()} , value : {item} </li>)}</ul>
+    }
+
+    const list2 = [12, 54, 32, 65, 87, 90]
+    ReactDOM.render(
+        <MyListCom items={list2}/>,
+        document.getElementById('div2')
+    )
+</script>
+
+
+<p>
+    列表组件 , index is key ：
+</p>
+<div id="div3"></div>
+<script type="text/babel">
+    function MyListCom1(props) {
+        const items = props.items
+        // const lis = items.map(item => <li key={item.toString()}>{item}</li>)
+        return <ul>{items.map((item, index) => <li key={index}> key : {index} , value : {item.value} , item.id is
+            : {item.id} </li>)}</ul>
+    }
+
+    const list3 = [{id: '1', value: '12'}, {id: '2', value: '12'}, {id: '3', value: '12'}, {
+        id: '4',
+        value: '12'
+    }, {id: '5', value: '12'}]
+    ReactDOM.render(
+        <MyListCom1 items={list3}/>,
+        document.getElementById('div3')
+    )
+</script>
+
+</body>
+
+</html>

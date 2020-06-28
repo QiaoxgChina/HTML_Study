@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        DEMO
+    </title>
+
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <!-- 生产环境中不建议使用 -->
+    <script src="../js/babel.min.js"></script>
+
+    <style>
+        #myButton {
+            border: 1px solid whitesmoke;
+            width: 80px;
+            height: 30px;
+            border-radius: 10px;
+            text-align: center;
+            vertical-align: middle;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div id="eventDiv"></div>
+
+<script type="text/babel">
+
+    class MyButton extends React.Component {
+        constructor() {
+            super()
+            this.state = {
+                isOpen: false
+            }
+        }
+
+        render() {
+            return (
+                <button id="myButton" onClick={(e) => this.taggerButton(e)}>
+                    {this.state.isOpen ? "开" : "关"}
+                </button>
+            );
+        }
+
+        taggerButton(e) {
+            // e.preventDefault()
+            this.setState(prevState => ({
+                    isOpen:!prevState.isOpen
+                }
+            ))
+        }
+    }
+
+    ReactDOM.render(
+        <MyButton/>,
+        document.getElementById("eventDiv")
+    )
+
+</script>
+
+</body>
+
+</html>

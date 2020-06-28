@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>菜鸟教程(runoob.com)</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            background-color: gray;
+        }
+        .header {
+            background-color: #2196F3;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+        .footer {
+            background-color: #444;
+            color: white;
+            padding: 15px;
+        }
+        .topmenu {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #777;
+        }
+        .topmenu li {
+            float: left;
+        }
+        .topmenu li a {
+            display: inline-block;
+            color: white;
+            text-align: center;
+            padding: 16px;
+            text-decoration: none;
+        }
+        .topmenu li a:hover {
+            background-color: #222;
+        }
+        .topmenu li a.active {
+            color: white;
+            background-color: #4CAF50;
+        }
+        .column {
+            float: left;
+            padding: 15px;
+        }
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+        .sidemenu {
+            width: 25%;
+        }
+        .content {
+            width: 75%;
+        }
+        .sidemenu ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        .sidemenu li a {
+            margin-bottom: 4px;
+            display: block;
+            padding: 8px;
+            background-color: #eee;
+            text-decoration: none;
+            color: #666;
+        }
+        .sidemenu li a:hover {
+            background-color: #555;
+            color: white;
+        }
+        .sidemenu li a.active {
+            background-color: #008CBA;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<ul class="topmenu">
+    <li><a href="#home" class="active">主页</a></li>
+    <li><a href="#news">新闻</a></li>
+    <li><a href="#contact">联系我们</a></li>
+    <li><a href="#about">关于我们</a></li>
+</ul>
+
+<div class="clearfix">
+    <div class="column sidemenu">
+        <ul>
+            <li><a href="#flight">The Flight</a></li>
+            <li><a href="#city" class="active">The City</a></li>
+            <li><a href="#island">The Island</a></li>
+            <li><a href="#food">The Food</a></li>
+            <li><a href="#people">The People</a></li>
+            <li><a href="#history">The History</a></li>
+            <li><a href="#oceans">The Oceans</a></li>
+        </ul>
+    </div>
+
+    <div class="column content">
+        <div class="header">
+            <h1>The City</h1>
+        </div>
+        <h1>Chania</h1>
+        <p>Chania is the capital of the Chania region on the island of Crete. The city can be divided in two parts, the old town and the modern city.</p>
+        <p>You will learn more about responsive web pages in a later chapter.</p>
+        <div class="news">
+            <h1>吴尊友：北京的疫情已经控制住了，但有个情况要认清</h1>
+            <span class="time">2020-06-18 17:43</span>
+            <p>今天下午，北京召开疫情防控第125场例行新闻发布会。中国疾控中心流行病学首席专家吴尊友对大家关心的问题作出了回应。</p>
+
+            <img src="../img/new_01.png">
+            <h4 class="img_title">吴尊友：北京的疫情已经控制住了</h4>
+
+            <p>吴尊友表示，非常明确地告诉大家，北京的疫情已经控制住了。
+                他解释称，每天新增确诊病例不等于新感染病例，对发病时间分析可知，大部分确诊病例在几天前就出现相关症状，从感染到发病还有一段时间。所以，昨天新增的21个病例都是在6月12日以前感染的。</p>
+
+            <p>此次疫情北京市响应及时，第一时间发现了疫情、第一时间锁定了源头、第一时间采取措施，切断了继续传播，把疫情控制在了最小的范围。</p>
+
+            <h4 class="img_title">疫情控制住不意味着不再有新增病例</h4>
+
+            <p>吴尊友指出，疫情控制住，不意味着以后不再有新增病例报告。之后新增的病例大多数应该是对既往感染病例的发现，新感染只有零星的。这个新增病例的曲线还会延续一段时间，但病例数会越来越少。</p>
+
+            <img src="../img/new_02.png">
+            <h4 class="img_title">卖水产的感染人数相对最多</h4>
+
+            <p>为什么疫情发生在新发地批发市场？吴尊友回应称，联合调查组对相关病例进行职业分类发现，卖水产的感染的人数相对比较多，其次是卖牛羊肉的。 从病人的发病时间看，卖水产一类的工作人员发病时间要早。</p>
+
+            <p>为什么传染源头可能在卖水产的地方产生？联合调查组又对市场很多地方进行环境采样，采样的结果和病例情况放在一起分析，污染比较严重的地方还是水产和牛羊肉大厅。
+                初步分析，这可能是因为这些地方温度低、湿度大，适合病毒存活。
+                至于为什么这里会成为传播中心，还需要进一步分析。</p>
+
+            <img src="../img/new_03.jpg">
+            <h4 class="img_title">生吃蔬菜、水果是否安全？要看产地和市场</h4>
+
+            <p>生吃蔬菜、水果是否存在病毒残留的风险？吴尊友表示，首先要看产地是不是安全的。其次，看供应市场是不是安全的。北京蔬菜瓜果主要来自山东、河北，这些地方都是较为安全的。水果生吃没问题，蔬菜能不生吃就不生吃。</p>
+
+            <span class="master">责编：刘倩</span>
+            <div style="font-size: 14px;color:gray;margin-bottom: 50px;">阅读数(12679）
+                <span style="float: right"><a href="#" style="text-decoration-line: none;">不感兴趣</a>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+                        href="#" style="text-decoration-line: none;">投诉</a> </span></div>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    <p>底部文本</p>
+</div>
+
+</body>
+</html>

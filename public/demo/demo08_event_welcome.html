@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        DEMO
+    </title>
+
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <!-- 生产环境中不建议使用 -->
+    <script src="../js/babel.min.js"></script>
+
+</head>
+
+<body>
+
+<div id="clickEvent"></div>
+
+<script type="text/babel">
+
+    class Main extends React.Component {
+        constructor() {
+            super()
+
+            this.state = {
+                isLogin: false
+            }
+
+            this.login = this.login.bind(this)
+            this.logout = this.logout.bind(this)
+        }
+
+        render() {
+            var loginState = this.state.isLogin
+
+            let button = null
+            let textString = null
+            if (loginState) {
+                textString = '欢迎回来'
+                button = <button onClick={this.logout}>退出登录</button>
+            } else {
+                textString = '请先登录'
+                button = <button onClick={this.login}>登录</button>
+            }
+
+            return (
+                <div>
+                    <h1>{textString}</h1>
+                    {button}
+                </div>
+            )
+
+        }
+
+        login() {
+            this.setState(prevState => ({
+                isLogin: !prevState.isLogin
+            }))
+        }
+
+        logout() {
+            this.setState(
+                {isLogin: false}
+            )
+        }
+    }
+
+    ReactDOM.render(
+        <Main/>,
+        document.getElementById('clickEvent')
+    )
+</script>
+</body>
+
+</html>

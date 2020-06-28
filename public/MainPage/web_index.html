@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f9f9f9;
+        }
+
+        .headerView {
+            list-style-type: none;
+            top: 0;
+            background-color: #777;
+            position: sticky;
+            overflow: hidden;
+        }
+
+        .headerView li {
+            float: left;
+            display: inline-block;
+        }
+
+        .headerView li a {
+            display: inline-block;
+            color: white;
+            background-color: #777;
+            padding: 25px;
+            width:120px;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .headerView li a:hover {
+            background-color: black;
+        }
+
+        .headerView li a.active {
+            background-color: #4CAF50;
+            font-weight: bold;
+        }
+
+        #bodyView {
+            margin: auto;
+        }
+
+
+        .column {
+            float: left;
+            width: 1000px;
+        }
+
+        .leftIndex {
+            width: 20%;
+        }
+
+        .content {
+            width: 80%;
+        }
+
+        #bodyView::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        #bodyView ul {
+            list-style-type: none;
+            background-color: white;
+            height:100%;
+            width: 200px;
+            position: fixed;
+            top: 71px;
+            overflow: auto;
+        }
+
+        #bodyView ul li a {
+            text-decoration-line: none;
+            text-align: center;
+
+            /*将内联元素转成块元素*/
+            display: block;
+            margin-bottom: 1px;
+            padding-top: 15px;
+            padding-bottom: 15px;
+            background-color: white;
+            color: #666;
+        }
+
+        #bodyView ul li a:hover {
+            background-color: #f9f9f9;
+            border-left: 5px solid blue;
+        }
+
+        #bodyView ul li a.active {
+            background-color: #f9f9f9;
+            border-left: 5px solid blue;
+        }
+
+        .news {
+            background-color: white;
+            width: 800px;
+            text-align: left;
+            padding: 80px 50px 50px;
+            margin: auto;
+        }
+
+        .news .time {
+            color: gray;
+            font-size: 14px;
+            padding-top: 30px;
+            padding-bottom: 20px;
+            display: block;
+        }
+
+        .news p {
+            line-height: 30px;
+            text-align: justify;
+            margin-top: 20px;
+        }
+
+        .news img {
+            display: block;
+            margin-bottom: 20px;
+            margin-top: 20px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .news .img_title {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .news .master {
+            display: block;
+            color: gray;
+            font-size: 14px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            text-align: right;
+        }
+
+        #footView {
+            width: 100%;
+            padding: 20px 0;
+            color: white;
+            background-color: #444;
+            text-align: center;
+            z-index: auto;
+        }
+
+    </style>
+
+</head>
+<body>
+
+
+<ul class="headerView">
+    <li><a href="#main" class="active">首页</a></li>
+    <li><a href="#news">新闻</a></li>
+    <li><a href="#topic">论坛</a></li>
+    <li><a href="#phone">联系我们</a></li>
+</ul>
+
+<div id="bodyView">
+
+    <div class="column leftIndex">
+
+        <ul class="menu">
+            <li><a href="#">MENU 1</a></li>
+            <li><a href="#">MENU 2</a></li>
+            <li><a href="#" class="active">MENU 3</a></li>
+            <li><a href="#">MENU 4</a></li>
+            <li><a href="#">MENU 5</a></li>
+            <li><a href="#">MENU 6</a></li>
+            <li><a href="#">MENU 7</a></li>
+        </ul>
+    </div>
+
+    <div class="column content">
+        <div class="news">
+            <h1>吴尊友：北京的疫情已经控制住了，但有个情况要认清</h1>
+            <span class="time">2020-06-18 17:43</span>
+            <p>今天下午，北京召开疫情防控第125场例行新闻发布会。中国疾控中心流行病学首席专家吴尊友对大家关心的问题作出了回应。</p>
+
+            <img src="../img/new_01.png" alt=""/>
+            <h4 class="img_title">吴尊友：北京的疫情已经控制住了</h4>
+
+            <p>吴尊友表示，非常明确地告诉大家，北京的疫情已经控制住了。
+                他解释称，每天新增确诊病例不等于新感染病例，对发病时间分析可知，大部分确诊病例在几天前就出现相关症状，从感染到发病还有一段时间。所以，昨天新增的21个病例都是在6月12日以前感染的。</p>
+
+            <p>此次疫情北京市响应及时，第一时间发现了疫情、第一时间锁定了源头、第一时间采取措施，切断了继续传播，把疫情控制在了最小的范围。</p>
+
+            <h4 class="img_title">疫情控制住不意味着不再有新增病例</h4>
+
+            <p>吴尊友指出，疫情控制住，不意味着以后不再有新增病例报告。之后新增的病例大多数应该是对既往感染病例的发现，新感染只有零星的。这个新增病例的曲线还会延续一段时间，但病例数会越来越少。</p>
+
+            <img src="../img/new_02.png" alt=""/>
+            <h4 class="img_title">卖水产的感染人数相对最多</h4>
+
+            <p>为什么疫情发生在新发地批发市场？吴尊友回应称，联合调查组对相关病例进行职业分类发现，卖水产的感染的人数相对比较多，其次是卖牛羊肉的。 从病人的发病时间看，卖水产一类的工作人员发病时间要早。</p>
+
+            <p>为什么传染源头可能在卖水产的地方产生？联合调查组又对市场很多地方进行环境采样，采样的结果和病例情况放在一起分析，污染比较严重的地方还是水产和牛羊肉大厅。
+                初步分析，这可能是因为这些地方温度低、湿度大，适合病毒存活。
+                至于为什么这里会成为传播中心，还需要进一步分析。</p>
+
+            <img src="../img/new_03.jpg" alt=""/>
+            <h4 class="img_title">生吃蔬菜、水果是否安全？要看产地和市场</h4>
+
+            <p>生吃蔬菜、水果是否存在病毒残留的风险？吴尊友表示，首先要看产地是不是安全的。其次，看供应市场是不是安全的。北京蔬菜瓜果主要来自山东、河北，这些地方都是较为安全的。水果生吃没问题，蔬菜能不生吃就不生吃。</p>
+
+            <span class="master">责编：刘倩</span>
+            <div style="font-size: 14px;color:gray;margin-bottom: 50px;">阅读数(12679）
+                <span style="float: right"><a href="#" style="text-decoration-line: none;">不感兴趣</a>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+                        href="#" style="text-decoration-line: none;">投诉</a> </span></div>
+        </div>
+    </div>
+
+</div>
+<div id="footView">
+    版权所有：Qiaoxg
+</div>
+</body>
+</html>

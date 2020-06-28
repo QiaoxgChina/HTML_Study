@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <!-- 生产环境中不建议使用 -->
+    <script src="../js/babel.min.js"></script>
+
+</head>
+
+<body>
+
+    <h1>创建组件</h1>
+    <p>
+    <h2>第一种方式：继承 React.Component</h2>
+    <pre>
+    <code>
+        class HelloMessage extends React.Component {
+            render() {
+                return Hello {this.props.name};
+            }
+        }
+    </code>
+</pre>
+    <div id="component"></div><br />
+    </p>
+
+    <p>
+    <h2>第二种方式：函数方式</h2>
+    <pre>
+        <code>
+            function HelloMessage(props) {
+                return World 111111111111, {params.name};
+            }
+        </code>
+    </pre>
+    <div id="component_01"></div><br />
+    </p>
+
+    <p>
+    <h2>有兩個屬性的組件</h2>
+    <div id="component_02"></div><br />
+    </p>
+
+    <p>
+    <h2 style="color: red;">注意事项：</h2>
+    <ul>
+        <li>
+            自定义的 React 类名以大写字母开头
+        </li>
+
+        <li>
+            组件类只能包含一个顶层标签
+        </li>
+    </ul>
+
+    </p>
+
+    <script type="text/babel">
+
+        /*第一种创建组件的方法,记得给script标签添加type="text/babel"属性*/
+        class HelloMessage extends React.Component {
+            render() {
+                return <h3>Hello {this.props.name}</h3>;
+            }
+        }
+
+        var element = <HelloMessage name="John" />;
+        ReactDOM.render(
+            element,
+            // "why ?",
+            document.getElementById('component')
+        );
+
+
+        /*第二种方式：函数方式*/
+
+        function WorldMessage(params) {
+            return <h3>World , {params.name}</h3>
+        }
+
+        ReactDOM.render(
+            <WorldMessage name="Qiaoxg" />,
+            document.getElementById("component_01")
+        );
+
+
+        /*有两个属性的组件*/
+        class SecondSomponent extends React.Component {
+            render() {
+                return <h3>{this.props.name} 的性别是： {this.props.sex == 1 ? "男" : "女"} </h3>;
+            }
+        }
+
+        SecondSomponent.defaultProps = {
+            name: 'Runoob'
+        };
+        ReactDOM.render(
+            <SecondSomponent sex="2" />,
+            document.getElementById("component_02")
+        );
+
+    </script>
+
+</body>
+
+</html>

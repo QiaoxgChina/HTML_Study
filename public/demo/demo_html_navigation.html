@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .one ul {
+            margin: 0;
+            background-color: #333;
+            overflow: auto;
+            padding-bottom: 20px;
+            padding-top: 20px;
+        }
+
+        .one ul li {
+            list-style-type: none;
+            float: left;
+            border-right: 1px gray solid;
+        }
+
+        .one ul li:last-child {
+            border-right: none;
+        }
+
+        .one ul li a {
+            /*display: block;*/
+            text-decoration-line: none;
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
+
+        /*@media screen and (max-width: 600px){*/
+        /*    ul.navigation li {float: none;}*/
+        /*}*/
+
+
+        .float .navigation {
+            padding: 0;
+            margin: 0;
+            list-style-type: none;
+            background-color: #333;
+            overflow: auto;
+        }
+
+        .float .navigation li {
+            float: left;
+        }
+
+        .float .navigation div {
+            display: block;
+            text-decoration-line: none;
+            color: white;
+            padding: 20px 30px;
+            cursor: pointer;
+        }
+
+        .float .navigation div:hover:not(.active_float) {
+            background-color: orange;
+        }
+
+        .active_float {
+            background-color: #008CBA;
+        }
+
+        .active {
+            background-color: #008CBA;
+        }
+
+        a:hover:not(.active) {
+            background-color: orange;
+        }
+
+        iframe {
+            border: 1px solid red;
+            height: 1000px;
+            width: 100%;
+            overflow: hidden;
+        }
+    </style>
+
+    <script type="text/javascript">
+        function clickNavigation(e) {
+            var preActive = document.getElementsByClassName("active_float")[0];
+            preActive.className = "";
+            e.className = "active_float"
+
+            // alert(e.innerText)
+
+            let url = ""
+            var webView = document.getElementById("webView");
+            if (e.innerText === "主页") {
+                url = "demo_html_navigation.html"
+            } else if (e.innerText === "新闻") {
+                url = "https://www.baidu.com"
+            } else if (e.innerText === "论坛") {
+                url = "demo01_helloworld.html"
+            } else if (e.innerText === "科技") {
+                url = "demo02.html"
+            }
+            webView.src = url
+
+        }
+    </script>
+
+</head>
+<body>
+
+
+<div class="one">
+    <ul class="navigation">
+        <li><a href="demo_html_navigation.html" class="active" target="showWeb">主页</a></li>
+        <li><a href="https://www.baidu.com" target="showWeb">新闻</a></li>
+        <li><a href="demo01_helloworld.html" target="showWeb">论坛</a></li>
+        <li><a href="demo02.html" target="showWeb">科技</a></li>
+        <li><a href="demo03_component.html" target="showWeb">军事</a></li>
+        <li><a href="demo04_components.html" target="showWeb">图片</a></li>
+        <li><a href="demo05_props_children.html" target="showWeb">数码</a></li>
+        <li><a href="demo06_props_default.html" target="showWeb">关于</a></li>
+    </ul>
+
+</div>
+
+<div class="float" style="margin-top: 100px;">
+    <h1>float 方式 ：</h1>
+    <ul class="float navigation" id="navigation">
+        <li>
+            <div class="active_float" onclick="clickNavigation(this)">主页</div>
+        </li>
+        <li>
+            <div onclick="clickNavigation(this)">新闻</div>
+        </li>
+        <li>
+            <div onclick="clickNavigation(this)">论坛</div>
+        </li>
+        <li>
+            <div onclick="clickNavigation(this)">科技</div>
+        </li>
+
+
+    </ul>
+
+</div>
+
+<iframe name="showWeb" id="webView">
+
+</iframe>
+
+
+</body>
+</html>
